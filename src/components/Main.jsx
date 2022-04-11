@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { NavBar, Home, Register } from ".";
+import { NavBar, Home, Register, Login } from ".";
 
 const Main = () => {
   const [token, setToken] = useState("");
@@ -28,9 +28,21 @@ const Main = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
+          path="/Login"
+          element={
+            <Login
+              token={token}
+              setToken={setToken}
+              username={username}
+              setUsername={setUsername}
+            />
+          }
+        />
+        <Route
           path="/Register"
           element={
             <Register
+              token={token}
               setToken={setToken}
               username={username}
               setUsername={setUsername}
