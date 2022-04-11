@@ -1,27 +1,28 @@
 import React, { useState } from "react";
 import { registerUser } from "../api";
-import { useHistory } from "react-router-dom";
-const Register = ({ setToken }) => {
-  const [username, setUsername] = useState("");
+import { useNavigate } from "react-router-dom";
+const Register = ({ setToken, username, setUsername }) => {
   const [password, setPassword] = useState("");
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const userSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const result = await registerUser(username, password);
-      if (result.success) {
-        localStorage.getItem("token", result.data.token);
+      if (result.token) {
+        localStorage.getItem("token", result.token);
+        localStorage.getItem("username", result.user.username);
         console.log(result);
-        setToken(result.data.token);
+        setToken(result.token);
+        setUsername(result.user.username);
       }
     } catch (error) {
       console.error("Error: ", error);
     } finally {
       setUsername("");
       setPassword("");
-      history.push("/");
+      navigate("/");
     }
   };
 
