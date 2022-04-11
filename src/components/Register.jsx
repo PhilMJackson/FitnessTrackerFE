@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { registerUser } from "../api";
 import { useNavigate } from "react-router-dom";
-const Register = ({ setToken, username, setUsername }) => {
+const Register = ({ token, setToken, username, setUsername }) => {
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
 
@@ -11,8 +11,8 @@ const Register = ({ setToken, username, setUsername }) => {
     try {
       const result = await registerUser(username, password);
       if (result.token) {
-        localStorage.getItem("token", result.token);
-        localStorage.getItem("username", result.user.username);
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("username", result.user.username);
         console.log(result);
         setToken(result.token);
         setUsername(result.user.username);

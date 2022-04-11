@@ -9,8 +9,8 @@
 Goals and Operations
 --Visual--
 -NavBar - Functional
--Register -
--Login -
+-Register -Functional
+-Login - In Progress
 -LogOut - Complete
 -Routines
 -MyRoutines
