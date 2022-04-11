@@ -27,8 +27,8 @@ const NavBar = () => {
           <Link className="log" to="/Login">
             <button type="button">Login</button>
           </Link>
-          <Link className="log" to="/SignUp">
-            <button type="button">SignUp</button>
+          <Link className="log" to="/Register">
+            <button type="button">Register</button>
           </Link>
         </div>
       ) : (

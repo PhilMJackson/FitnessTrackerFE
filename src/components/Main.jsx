@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
-import { NavBar, Register } from ".";
+import { Route, Routes } from "react-router-dom";
+import { NavBar, Home, Register } from ".";
 
 const Main = () => {
   const [token, setToken] = useState("");
@@ -20,16 +20,24 @@ const Main = () => {
     if (storedUser) {
       setUsername(storedUser);
     }
-  });
+  }, [username]);
 
   return (
     <>
       <NavBar />
-      <Switch>
-        <Route path="/Register">
-          <Register setToken={setToken} />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/Register"
+          element={
+            <Register
+              setToken={setToken}
+              username={username}
+              setUsername={setUsername}
+            />
+          }
+        />
+      </Routes>
     </>
   );
 };
