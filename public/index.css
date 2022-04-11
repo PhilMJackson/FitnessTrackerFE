@@ -1,0 +1,32 @@
+html {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  #app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  nav {
+    display: flex;
+    background-color: rgb(93, 93, 233);
+    align-items: center;
+    height: 15%;
+    justify-content: space-between;
+    color: black;
+  }
+  
+  .btn {
+    display: flex;
+  }
+  
+  .lnk {
+    display: flex;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: black;
+    padding: 5%;
+  }
