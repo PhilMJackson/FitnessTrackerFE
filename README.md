@@ -10,9 +10,9 @@ Goals and Operations
 --Visual--
 -NavBar - Functional
 -Register -Functional
--Login - In Progress
+-Login - Complete
 -LogOut - Complete
--Routines
+-Routines - In Progress
 -MyRoutines
 -Activities
 -RoutinesByUser
