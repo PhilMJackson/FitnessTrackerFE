@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { fetchUserRoutines } from "../api";
 
-const MyRoutines = ({ userRoutines, setUserRoutines }) => {
+const MyRoutines = ({ username, token }) => {
+  const [userRoutines, setUserRoutines] = useState([]);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("username");
+    const storedToken = localStorage.getItem("token");
+    const getUserRoutines = async () => {
+      const allUserRoutines = await fetchUserRoutines(storedUser, storedToken);
+      if (allUserRoutines.length) {
+        setUserRoutines(allUserRoutines.reverse());
+      } else return;
+    };
+    getUserRoutines();
+  }, []);
   return (
     <>
       <h1> My Routines</h1>

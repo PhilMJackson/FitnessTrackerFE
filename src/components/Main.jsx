@@ -8,7 +8,7 @@ const Main = () => {
   const [username, setUsername] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [routines, setRoutines] = useState([]);
-  const [userRoutines, setUserRoutines] = useState([]);
+  // const [userRoutines, setUserRoutines] = useState([]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -33,15 +33,16 @@ const Main = () => {
     getAllRoutines();
   }, []);
 
-  useEffect(() => {
-    const getUserRoutines = async () => {
-      const allUserRoutines = await fetchUserRoutines();
-      if (allUserRoutines.length) {
-        setUserRoutines(allUserRoutines.reverse());
-      } else return;
-    };
-    getUserRoutines();
-  }, []);
+  //    user routines
+  // useEffect(() => {
+  //   const getUserRoutines = async () => {
+  //     const allUserRoutines = await fetchUserRoutines();
+  //     if (allUserRoutines.length) {
+  //       setUserRoutines(allUserRoutines.reverse());
+  //     } else return;
+  //   };
+  //   getUserRoutines();
+  // }, []);
 
   return (
     <>
@@ -56,8 +57,10 @@ const Main = () => {
           path="/MyRoutines"
           element={
             <MyRoutines
-              userRoutines={userRoutines}
-              setUserRoutines={setUserRoutines}
+              username={username}
+              token={token}
+              // userRoutines={userRoutines}
+              // setUserRoutines={setUserRoutines}
             />
           }
         />
