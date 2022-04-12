@@ -45,3 +45,42 @@ nav {
   padding-bottom: 1rem;
   box-shadow: 2px 2px 2px black;
 }
+
+.routineCard {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #005fff;
+}
+
+.activityCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #07effd;
+
+}
+
+.cardsField {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.name {
+  background: linear-gradient(90deg, #07effd 0%, #005fff 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.4rem;
+  background-position: 0 90%;
+  transition: all 0.3s ease-in-out;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.name:hover {
+  background-size: 100% 90%;
+}
+
+.creator {
+  display: flex;
+  gap: 2px;
+}
+
