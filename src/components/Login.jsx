@@ -12,7 +12,6 @@ const Login = ({ token, setToken, setUsername }) => {
   // ================ Helper Functions =======
   const updateForm = (event) => {
     setFormState({ ...formState, [event.target.name]: event.target.value });
-    console.log(formState);
   };
   const userSubmit = async (e) => {
     e.preventDefault();

@@ -29,6 +29,7 @@ nav {
   text-decoration: none;
   color: black;
   padding: 5%;
+  white-space:nowrap
 }
 
 .formCard {

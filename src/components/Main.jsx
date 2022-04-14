@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { NavBar, Home, Register, Login, Routines, MyRoutines } from ".";
-import { fetchRoutines, fetchUserRoutines } from "../api";
+import {
+  NavBar,
+  Home,
+  Register,
+  Login,
+  Routines,
+  MyRoutines,
+  Activities,
+} from ".";
+import { fetchRoutines, fetchActivities } from "../api";
 
 const Main = () => {
   const [token, setToken] = useState("");
   const [username, setUsername] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [routines, setRoutines] = useState([]);
-  // const [userRoutines, setUserRoutines] = useState([]);
+  const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -33,16 +41,15 @@ const Main = () => {
     getAllRoutines();
   }, []);
 
-  //    user routines
-  // useEffect(() => {
-  //   const getUserRoutines = async () => {
-  //     const allUserRoutines = await fetchUserRoutines();
-  //     if (allUserRoutines.length) {
-  //       setUserRoutines(allUserRoutines.reverse());
-  //     } else return;
-  //   };
-  //   getUserRoutines();
-  // }, []);
+  useEffect(() => {
+    const getActivities = async () => {
+      const allActivities = await fetchActivities();
+      if (allActivities.length) {
+        setActivities(allActivities.reverse());
+      } else return;
+    };
+    getActivities();
+  }, []);
 
   return (
     <>
@@ -57,12 +64,15 @@ const Main = () => {
           path="/MyRoutines"
           element={
             <MyRoutines
+              activities={activities}
               username={username}
               token={token}
-              // userRoutines={userRoutines}
-              // setUserRoutines={setUserRoutines}
             />
           }
+        />
+        <Route
+          path="/Activities"
+          element={<Activities activities={activities} />}
         />
         <Route
           path="/Login"
@@ -75,18 +85,6 @@ const Main = () => {
             />
           }
         />
-        <Route
-          path="/Login"
-          element={
-            <Login
-              token={token}
-              setToken={setToken}
-              username={username}
-              setUsername={setUsername}
-            />
-          }
-        />
-
         <Route
           path="/Register"
           element={

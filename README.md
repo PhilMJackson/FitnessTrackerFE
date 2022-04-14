@@ -13,15 +13,20 @@ Goals and Operations
 -Login - Complete
 -LogOut - Complete
 -Routines - In Progress
--MyRoutines
--Activities
--RoutinesByUser
+-MyRoutines - Listing userRoutines functional?
+-Activities - Can be viewed
+-RoutinesByUser - TBD if needed
 --Functionality--
--AddActivity
--RemoveActivity
 -CreateRoutine
 -DeleteRoutine
 -UpdateRoutine
+-AddActivity
+-RemoveActivity
 -CreateActivity
 -DeleteActivity
 -UpdateActivity
+
+---Things to Tackle---
+when trying to register, log in,
+
+- see meaningful messages if there are errors during registration, so that I may correct them
