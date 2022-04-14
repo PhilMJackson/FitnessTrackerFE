@@ -1,5 +1,5 @@
 //filter out already applied activities
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchActivity, addActivity } from "../api";
 
@@ -8,14 +8,31 @@ const AddActivity = ({
   userRoutines,
   setUserRoutines,
   activities,
-  formState,
-  initialFormState,
-  setFormState,
-  updateForm,
-  updateFormActivityId,
+  activity,
 }) => {
+  // ================= Use Variables ==========
   let navigate = useNavigate();
+  let initialAddFormState = { activityId: "", count: "", duration: "" };
 
+  // ================= States =========
+  const [addFormState, setAddFormState] = useState(initialAddFormState);
+  const [activityState, setActivityState] = useState(activity);
+
+  // ================ Helper Functions =======
+  const updateForm = (event) => {
+    setAddFormState({
+      ...addFormState,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const updateFormActivityId = (event) => {
+    console.log(event.target);
+    setAddFormState({ ...addFormState, activityId: event.target.value });
+  };
+
+  // ================ Return =======
+  // ================ Return =======
   return (
     <form
       className="postCard"
@@ -23,7 +40,7 @@ const AddActivity = ({
         e.preventDefault();
         const applyActivity = async () => {
           try {
-            const result = await addActivity(routine.id, formState);
+            const result = await addActivity(routine.id, addFormState);
 
             if (result.id) {
               const updatedRoutineActivities = [...routine.activities];
@@ -40,7 +57,7 @@ const AddActivity = ({
           } catch (error) {
             console.error("Error: ", error);
           } finally {
-            setFormState(initialFormState);
+            setAddFormState(initialAddFormState);
             navigate("/MyRoutines");
           }
         };
@@ -74,7 +91,7 @@ const AddActivity = ({
           type="text"
           name="duration"
           placeholder="duration"
-          value={formState.duration}
+          value={addFormState.duration}
           onChange={updateForm}
         />
         <input
@@ -82,7 +99,7 @@ const AddActivity = ({
           type="text"
           name="count"
           placeholder="count"
-          value={formState.count}
+          value={addFormState.count}
           onChange={updateForm}
         />
         <div className="cardBtn">

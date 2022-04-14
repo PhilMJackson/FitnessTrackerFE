@@ -19,7 +19,13 @@ const Routines = ({ routines, setRoutines }) => {
                 Goal:
                 <div id="goal">{routine.goal}</div>
               </div>
-              <div className="activities">
+              <div className="activitiesContainer">
+                <div
+                  className="activityContainerTitle"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Activities:
+                </div>
                 {routine.activities.map((activity, i) => {
                   return (
                     <div className="activityCard" key={i}>
@@ -31,10 +37,17 @@ const Routines = ({ routines, setRoutines }) => {
                       </div>
                       <div className="description">{activity.description}</div>
                       {activity.duration ? (
-                        <div className="duration">{activity.duration}</div>
+                        <div
+                          className="duration"
+                          style={{ fontWeight: "bold" }}
+                        >
+                          Duration: {activity.duration} min
+                        </div>
                       ) : null}
                       {activity.count ? (
-                        <div className="count">{activity.count}</div>
+                        <div className="count" style={{ fontWeight: "bold" }}>
+                          Count: {activity.count} reps
+                        </div>
                       ) : null}
                     </div>
                   );

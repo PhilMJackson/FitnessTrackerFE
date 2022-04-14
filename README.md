@@ -17,16 +17,20 @@ Goals and Operations
 -Activities - Can be viewed
 -RoutinesByUser - TBD if needed
 --Functionality--
--CreateRoutine
--DeleteRoutine
--UpdateRoutine
--AddActivity
--RemoveActivity
--CreateActivity
--DeleteActivity
--UpdateActivity
+-CreateRoutine -- Complete
+-DeleteRoutine --
+-UpdateRoutine --
+-AddActivity -- Complete w/ count and duration update
+-RemoveActivity --
+-CreateActivity --
+-DeleteActivity --
+-UpdateActivity --
 
 ---Things to Tackle---
-when trying to register, log in,
+when trying to complete form
 
-- see meaningful messages if there are errors during registration, so that I may correct them
+- see meaningful messages if there are errors during registration, so that they may be corrected
+
+On minor forms
+
+- pop up on same screen w/ button
