@@ -13,3 +13,25 @@ export const fetchRoutines = async () => {
     throw error;
   }
 };
+
+export const newRoutine = async (token, name, goal, isPublic) => {
+  try {
+    const response = await fetch(`${BASE_URL}/routines`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name,
+        goal,
+        isPublic,
+      }),
+    });
+    const data = await response.json();
+    console.log("Created Post", data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

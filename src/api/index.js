@@ -2,4 +2,6 @@
 export const BASE_URL = "http://fitnesstrac-kr.herokuapp.com/api";
 
 export { registerUser, loginUser, fetchUserRoutines } from "./users";
-export { fetchRoutines } from "./routines";
+export { fetchRoutines, newRoutine } from "./routines";
+export { fetchActivities, fetchActivity } from "./activities";
+export { addActivity } from "./routine_activities";
