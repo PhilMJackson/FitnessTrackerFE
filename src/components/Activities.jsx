@@ -1,9 +1,14 @@
 import React from "react";
+import CreateActivity from "./CreateActivity";
 
 const Activities = ({ activities, setActivities }) => {
+  const storedToken = localStorage.getItem("token");
   return (
     <>
       <h1>Activities</h1>
+      {storedToken ? (
+        <CreateActivity activities={activities} setActivities={setActivities} />
+      ) : null}
       <div className="cardsField">
         {activities.map((activity, i) => {
           return (

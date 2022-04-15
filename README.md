@@ -8,23 +8,21 @@
 
 Goals and Operations
 --Visual--
--NavBar - Functional
--Register -Functional
+-NavBar - Complete
+-Register -Complete
 -Login - Complete
 -LogOut - Complete
--Routines - In Progress
--MyRoutines - Listing userRoutines functional?
--Activities - Can be viewed
+-Routines - Functional - need to add cards
+-MyRoutines - Complete
+-Activities - Complete
 -RoutinesByUser - TBD if needed
 --Functionality--
 -CreateRoutine -- Complete
--DeleteRoutine --
--UpdateRoutine --
+-DeleteRoutine -- Complete
+-UpdateRoutine -- Complete
 -AddActivity -- Complete w/ count and duration update
--RemoveActivity --
--CreateActivity --
--DeleteActivity --
--UpdateActivity --
+-RemoveActivity -- Complete
+-CreateActivity -- Complete
 
 ---Things to Tackle---
 when trying to complete form

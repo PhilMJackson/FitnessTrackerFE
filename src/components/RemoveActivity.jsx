@@ -2,7 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { removeRoutineActivity } from "../api";
 
-const RemoveActivity = ({ activity, activitiesState, setActivitiesState }) => {
+const RemoveActivity = ({
+  activity,
+  routine,
+  userRoutines,
+  setUserRoutines,
+}) => {
   // ================= Use Variables ==========
   let storedToken = localStorage.getItem("token");
   let navigate = useNavigate();
@@ -11,12 +16,18 @@ const RemoveActivity = ({ activity, activitiesState, setActivitiesState }) => {
   const handleDelete = async () => {
     const applyActivity = async () => {
       try {
-        removeRoutineActivity(storedToken, activity.routineActivityId);
-        let filteredActivities = activitiesState.filter(
-          (activityElement) => activityElement.id !== activity.id
+        const result = await removeRoutineActivity(
+          storedToken,
+          activity.routineActivityId
         );
-        console.log(filteredActivities);
-        setActivitiesState(filteredActivities);
+        const filteredActivities = routine.activities.filter(
+          (activityElement) => activityElement.id !== result.activityId
+        );
+        const newRoutine = (routine.activities = filteredActivities);
+        const newUserRoutines = userRoutines.filter(
+          (routineElement) => routineElement.id !== newRoutine.id
+        );
+        setUserRoutines(newUserRoutines);
       } catch (error) {
         console.error("Error: ", error);
       } finally {

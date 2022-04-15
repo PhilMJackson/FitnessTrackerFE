@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { ActivityCard, AddActivity, RemoveActivity } from ".";
+import DeleteRoutine from "./DeleteRoutine";
+import UpdateRoutine from "./UpdateRoutine";
 
 const RoutineCard = ({
   routine,
@@ -7,9 +9,6 @@ const RoutineCard = ({
   setUserRoutines,
   activities,
 }) => {
-  // ================= States =========
-  const [routineState, setRoutineState] = useState(routine);
-  const [activitiesState, setActivitiesState] = useState(routine.activities);
   // ================ Return =======
   // ================ Return =======
   return (
@@ -19,6 +18,16 @@ const RoutineCard = ({
         Goal:
         <div id="goal">{routine.goal}</div>
       </div>
+      <UpdateRoutine
+        routine={routine}
+        userRoutines={userRoutines}
+        setUserRoutines={setUserRoutines}
+      />
+      <DeleteRoutine
+        routine={routine}
+        userRoutines={userRoutines}
+        setUserRoutines={setUserRoutines}
+      />
       <div className="activitiesContainer">
         <div className="activityContainerTitle" style={{ fontWeight: "bold" }}>
           Activities:
@@ -28,8 +37,9 @@ const RoutineCard = ({
               return (
                 <ActivityCard
                   activity={activity}
-                  activitiesState={activitiesState}
-                  setActivitiesState={setActivitiesState}
+                  routine={routine}
+                  userRoutines={userRoutines}
+                  setUserRoutines={setUserRoutines}
                   key={("activity", i)}
                 />
               );
@@ -41,8 +51,6 @@ const RoutineCard = ({
         userRoutines={userRoutines}
         setUserRoutines={setUserRoutines}
         activities={activities}
-        activitiesState={activitiesState}
-        setActivitiesState={setActivitiesState}
       />
     </div>
   );

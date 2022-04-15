@@ -27,3 +27,24 @@ export const fetchActivity = async (activityId) => {
     throw error;
   }
 };
+
+export const newActivity = async (token, { name, description }) => {
+  try {
+    const response = await fetch(`${BASE_URL}/activities`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name,
+        description,
+      }),
+    });
+    const data = await response.json();
+    console.log("Created Activity", data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

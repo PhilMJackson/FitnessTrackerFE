@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
+import { ErrorHandler } from ".";
 
 const Login = ({ token, setToken, setUsername }) => {
   // ================= Use Variables ==========
@@ -8,6 +9,7 @@ const Login = ({ token, setToken, setUsername }) => {
   let initialFormState = { username: "", password: "" };
   // ================= States =========
   const [formState, setFormState] = useState(initialFormState);
+  const [loginError, setLoginError] = useState({});
 
   // ================ Helper Functions =======
   const updateForm = (event) => {
@@ -18,7 +20,10 @@ const Login = ({ token, setToken, setUsername }) => {
 
     try {
       const result = await loginUser(formState.username, formState.password);
-      if (result.token) {
+      console.log("RESULT:", result);
+      if (result.error) {
+        setLoginError(result);
+      } else {
         localStorage.setItem("token", result.token);
         localStorage.setItem("username", result.user.username);
         console.log(result);
@@ -29,11 +34,11 @@ const Login = ({ token, setToken, setUsername }) => {
       console.error("Error: ", error);
     } finally {
       setFormState(initialFormState);
-      navigate("/");
     }
   };
 
   // ================ Return =======
+
   // ================ Return =======
   return (
     <div>
@@ -54,6 +59,7 @@ const Login = ({ token, setToken, setUsername }) => {
         ></input>
         <button type="submit">Log In</button>
       </form>
+      {loginError.error ? <ErrorHandler message={loginError.message} /> : null}
     </div>
   );
 };

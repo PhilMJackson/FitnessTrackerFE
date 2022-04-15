@@ -72,7 +72,9 @@ const Main = () => {
         />
         <Route
           path="/Activities"
-          element={<Activities activities={activities} />}
+          element={
+            <Activities activities={activities} setActivities={setActivities} />
+          }
         />
         <Route
           path="/Login"

@@ -20,15 +20,8 @@ const CreateRoutine = ({ userRoutines, setUserRoutines }) => {
     e.preventDefault();
 
     try {
-      const result = await newRoutine(
-        storedToken,
-        formState.name,
-        formState.goal,
-        formState.isPublic
-      );
-      if (result.id) {
-        setUserRoutines([result, ...userRoutines]);
-      }
+      const result = await newRoutine(storedToken, formState);
+      setUserRoutines([result, ...userRoutines]);
     } catch (error) {
       console.error("Error: ", error);
     } finally {
