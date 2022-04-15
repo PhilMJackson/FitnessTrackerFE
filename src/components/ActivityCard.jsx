@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { UpdateRoutineActivity } from ".";
+import { UpdateRoutineActivity, RemoveActivity } from ".";
 
-const ActivityCard = ({ routine, userRoutines, setUserRoutines, activity }) => {
+const ActivityCard = ({ activity, activitiesState, setActivitiesState }) => {
+  // ================= States =========
   const [activityState, setActivityState] = useState(activity);
+
+  // ================ Return =======
+  // ================ Return =======
   return (
     <div className="activityCard">
       <div className="activityName" style={{ fontWeight: "bold" }}>
@@ -20,11 +24,13 @@ const ActivityCard = ({ routine, userRoutines, setUserRoutines, activity }) => {
         </div>
       ) : null}
       <UpdateRoutineActivity
-        routine={routine}
-        userRoutines={userRoutines}
-        setUserRoutines={setUserRoutines}
         activity={activityState}
         setActivityState={setActivityState}
+      />
+      <RemoveActivity
+        activity={activityState}
+        activitiesState={activitiesState}
+        setActivitiesState={setActivitiesState}
       />
     </div>
   );

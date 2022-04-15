@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { updateRoutineActivity, fetchActivity } from "../api";
+import { updateRoutineActivity } from "../api";
 
-const UpdateRoutineActivity = ({
-  routine,
-  userRoutines,
-  setUserRoutines,
-  activity,
-  setActivityState,
-}) => {
+const UpdateRoutineActivity = ({ activity, setActivityState }) => {
   // ================= Use Variables ==========
   let initialUpdateFormState = { count: "", duration: "" };
   let storedToken = localStorage.getItem("token");

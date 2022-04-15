@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ActivityCard, AddActivity } from ".";
+import { ActivityCard, AddActivity, RemoveActivity } from ".";
 
 const RoutineCard = ({
   routine,
@@ -7,7 +7,11 @@ const RoutineCard = ({
   setUserRoutines,
   activities,
 }) => {
+  // ================= States =========
   const [routineState, setRoutineState] = useState(routine);
+  const [activitiesState, setActivitiesState] = useState(routine.activities);
+  // ================ Return =======
+  // ================ Return =======
   return (
     <div className="routineCard">
       <div className="name">{routine.name}</div>
@@ -23,10 +27,9 @@ const RoutineCard = ({
           ? routine.activities.map((activity, i) => {
               return (
                 <ActivityCard
-                  routine={routineState}
-                  userRoutines={userRoutines}
-                  setUserRoutines={setUserRoutines}
                   activity={activity}
+                  activitiesState={activitiesState}
+                  setActivitiesState={setActivitiesState}
                   key={("activity", i)}
                 />
               );
@@ -38,6 +41,8 @@ const RoutineCard = ({
         userRoutines={userRoutines}
         setUserRoutines={setUserRoutines}
         activities={activities}
+        activitiesState={activitiesState}
+        setActivitiesState={setActivitiesState}
       />
     </div>
   );

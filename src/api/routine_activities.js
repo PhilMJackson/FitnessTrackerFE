@@ -1,6 +1,6 @@
 import { BASE_URL } from ".";
 
-export const addActivity = async (
+export const attachActivity = async (
   routineId,
   { activityId, count, duration }
 ) => {
@@ -46,6 +46,27 @@ export const updateRoutineActivity = async (
           count,
           duration,
         }),
+      }
+    );
+    console.log(response);
+    const data = await response.json();
+    console.log("Routine Updated", data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const removeRoutineActivity = async (token, routineActivityId) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/routine_activities/${routineActivityId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
     console.log(response);
