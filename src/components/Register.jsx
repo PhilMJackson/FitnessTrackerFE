@@ -1,7 +1,17 @@
 import React, { useState } from "react";
-import { registerUser } from "../api";
 import { useNavigate } from "react-router-dom";
-const Register = ({ token, setToken, username, setUsername }) => {
+import { ErrorHandler } from ".";
+import { registerUser } from "../api";
+const Register = ({
+  token,
+  setToken,
+  username,
+  setUsername,
+  isOpen,
+  setIsOpen,
+  error,
+  setError,
+}) => {
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
 
@@ -10,19 +20,21 @@ const Register = ({ token, setToken, username, setUsername }) => {
 
     try {
       const result = await registerUser(username, password);
-      if (result.token) {
+      if (result.error) {
+        setError(result);
+        setIsOpen(true);
+      } else if (result.token) {
         localStorage.setItem("token", result.token);
         localStorage.setItem("username", result.user.username);
         console.log(result);
         setToken(result.token);
         setUsername(result.user.username);
+        setUsername("");
+        setPassword("");
+        navigate("/");
       }
     } catch (error) {
       console.error("Error: ", error);
-    } finally {
-      setUsername("");
-      setPassword("");
-      navigate("/");
     }
   };
 
@@ -43,6 +55,15 @@ const Register = ({ token, setToken, username, setUsername }) => {
         ></input>
         <button type="submit">Register</button>
       </form>
+      {error.error ? (
+        <ErrorHandler
+          name={error.name}
+          message={error.message}
+          open={isOpen}
+          setIsOpen={setIsOpen}
+          setError={setError}
+        />
+      ) : null}
     </div>
   );
 };

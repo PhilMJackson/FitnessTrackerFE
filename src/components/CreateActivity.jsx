@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { newActivity } from "../api";
 
-const CreateActivity = ({ activities, setActivities }) => {
+const CreateActivity = ({ activities, setActivities, setIsOpen, setError }) => {
   // ================= Use Variables ==========
   let navigate = useNavigate();
   let initialActivityFormState = { name: "", description: "" };
@@ -26,12 +26,16 @@ const CreateActivity = ({ activities, setActivities }) => {
 
     try {
       const result = await newActivity(storedToken, activityFormState);
-      setActivities([result, ...activities]);
+      if (result.error) {
+        setError(result);
+        setIsOpen(true);
+      } else {
+        setActivities([result, ...activities]);
+        setActivityFormState(initialActivityFormState);
+        navigate("/Activities");
+      }
     } catch (error) {
       console.error("Error: ", error);
-    } finally {
-      setActivityFormState(initialActivityFormState);
-      navigate("/Activities");
     }
   };
 

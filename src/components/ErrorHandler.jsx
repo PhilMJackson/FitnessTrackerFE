@@ -1,14 +1,30 @@
 import React from "react";
 
-const ErrorHandler = ({ message }) => {
+const ErrorHandler = ({ name, message, open, setIsOpen, setError }) => {
+  if (!open) return null;
+  console.log("I Should Render");
+  const closeModal = () => {
+    setIsOpen(false);
+    setError({});
+  };
+  const click = () => {
+    console.log("clicked");
+  };
   return (
     <>
-      <div id="myModal" className="modal">
-        <div className="modal-content">
-          <span className="close">&times;</span>
-          <h1>Oops! Something went wrong!</h1>
-          <p>{message}</p>
+      <div id="overlay" onClick={(click, closeModal)}></div>
+      <div id="modal" className="modal">
+        <div className="modal-header">
+          <div className="title">{name}</div>
+          <button
+            data-close-button
+            className="close-button"
+            onClick={closeModal}
+          >
+            &times;
+          </button>
         </div>
+        <div className="modal-body">{message}</div>
       </div>
     </>
   );

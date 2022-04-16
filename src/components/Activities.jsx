@@ -1,13 +1,27 @@
 import React from "react";
-import CreateActivity from "./CreateActivity";
+import { CreateActivity, ErrorHandler } from ".";
 
-const Activities = ({ activities, setActivities }) => {
+const Activities = ({
+  activities,
+  setActivities,
+  isOpen,
+  setIsOpen,
+  error,
+  setError,
+}) => {
   const storedToken = localStorage.getItem("token");
   return (
     <>
       <h1>Activities</h1>
       {storedToken ? (
-        <CreateActivity activities={activities} setActivities={setActivities} />
+        <CreateActivity
+          activities={activities}
+          setActivities={setActivities}
+          open={isOpen}
+          setIsOpen={setIsOpen}
+          error={error}
+          setError={setError}
+        />
       ) : null}
       <div className="cardsField">
         {activities.map((activity, i) => {
@@ -31,6 +45,15 @@ const Activities = ({ activities, setActivities }) => {
           );
         })}
       </div>
+      {error.error ? (
+        <ErrorHandler
+          name={error.name}
+          message={error.message}
+          open={isOpen}
+          setIsOpen={setIsOpen}
+          setError={setError}
+        />
+      ) : null}
     </>
   );
 };

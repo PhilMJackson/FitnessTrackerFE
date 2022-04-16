@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchUserRoutines } from "../api";
-import { CreateRoutine, AddActivity, UpdateRoutineActivity } from ".";
-import { RoutineCard } from ".";
-const MyRoutines = ({ activities, username, token }) => {
-  // ================= Use Variables ==========
-  let initialFormState = { activityId: "", count: "", duration: "" };
-  let storedToken = localStorage.getItem("token");
-
+import { CreateRoutine, RoutineCard, ErrorHandler } from ".";
+const MyRoutines = ({ activities, isOpen, setIsOpen, error, setError }) => {
   // ================= States =========
   const [userRoutines, setUserRoutines] = useState([]);
 
@@ -34,6 +29,10 @@ const MyRoutines = ({ activities, username, token }) => {
         userRoutines={userRoutines}
         setUserRoutines={setUserRoutines}
         activities={activities}
+        error={error}
+        setError={setError}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
       />
       <div className="cardsField">
         {userRoutines.map((routine, i) => {
@@ -43,11 +42,24 @@ const MyRoutines = ({ activities, username, token }) => {
               userRoutines={userRoutines}
               setUserRoutines={setUserRoutines}
               activities={activities}
+              error={error}
+              setError={setError}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
               key={i}
             />
           );
         })}
       </div>
+      {error.error ? (
+        <ErrorHandler
+          name={error.name}
+          message={error.message}
+          open={isOpen}
+          setIsOpen={setIsOpen}
+          setError={setError}
+        />
+      ) : null}
     </>
   );
 };

@@ -17,6 +17,8 @@ const Main = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState({});
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -67,13 +69,24 @@ const Main = () => {
               activities={activities}
               username={username}
               token={token}
+              error={error}
+              setError={setError}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
             />
           }
         />
         <Route
           path="/Activities"
           element={
-            <Activities activities={activities} setActivities={setActivities} />
+            <Activities
+              activities={activities}
+              setActivities={setActivities}
+              error={error}
+              setError={setError}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
           }
         />
         <Route
@@ -84,6 +97,10 @@ const Main = () => {
               setToken={setToken}
               username={username}
               setUsername={setUsername}
+              error={error}
+              setError={setError}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
             />
           }
         />
@@ -95,6 +112,10 @@ const Main = () => {
               setToken={setToken}
               username={username}
               setUsername={setUsername}
+              error={error}
+              setError={setError}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
             />
           }
         />
