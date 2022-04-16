@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { newRoutine } from "../api";
 
-const CreateRoutine = ({ userRoutines, setUserRoutines }) => {
+const CreateRoutine = ({
+  userRoutines,
+  setUserRoutines,
+  setIsOpen,
+  setError,
+}) => {
   // ================= Use Variables ==========
   let navigate = useNavigate();
   let initialFormState = { name: "", goal: "", isPublic: true };
@@ -20,13 +25,11 @@ const CreateRoutine = ({ userRoutines, setUserRoutines }) => {
     e.preventDefault();
 
     try {
-      const result = await newRoutine(
-        storedToken,
-        formState.name,
-        formState.goal,
-        formState.isPublic
-      );
-      if (result.id) {
+      const result = await newRoutine(storedToken, formState);
+      if (result.error) {
+        setError(result);
+        setIsOpen(true);
+      } else {
         setUserRoutines([result, ...userRoutines]);
       }
     } catch (error) {
@@ -59,7 +62,6 @@ const CreateRoutine = ({ userRoutines, setUserRoutines }) => {
           value={formState.goal}
           onChange={updateForm}
         ></input>
-
         <div className="cardBtn">
           <button type="submit">Submit</button>
         </div>

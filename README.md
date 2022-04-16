@@ -8,25 +8,27 @@
 
 Goals and Operations
 --Visual--
--NavBar - Functional
--Register -Functional
+-NavBar - Complete
+-Register -Complete
 -Login - Complete
 -LogOut - Complete
--Routines - In Progress
--MyRoutines - Listing userRoutines functional?
--Activities - Can be viewed
+-Routines - Functional - need to add cards
+-MyRoutines - Complete
+-Activities - Complete
 -RoutinesByUser - TBD if needed
 --Functionality--
--CreateRoutine
--DeleteRoutine
--UpdateRoutine
--AddActivity
--RemoveActivity
--CreateActivity
--DeleteActivity
--UpdateActivity
+-CreateRoutine -- Complete
+-DeleteRoutine -- Complete
+-UpdateRoutine -- Complete
+-AddActivity -- Complete w/ count and duration update
+-RemoveActivity -- Complete
+-CreateActivity -- Complete
 
 ---Things to Tackle---
-when trying to register, log in,
+when trying to complete form
 
-- see meaningful messages if there are errors during registration, so that I may correct them
+- see meaningful messages if there are errors during registration, so that they may be corrected
+
+On minor forms
+
+- pop up on same screen w/ button

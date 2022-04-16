@@ -1,52 +1,55 @@
 //filter out already applied activities
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchActivity, addActivity } from "../api";
+import { attachActivity } from "../api";
 
 const AddActivity = ({
   routine,
-  userRoutines,
-  setUserRoutines,
   activities,
-  formState,
-  initialFormState,
-  setFormState,
-  updateForm,
-  updateFormActivityId,
+  activitiesState,
+  setActivitiesState,
 }) => {
+  // ================= Use Variables ==========
   let navigate = useNavigate();
+  let initialAddFormState = { activityId: "", count: "", duration: "" };
 
+  // ================= States =========
+  const [addFormState, setAddFormState] = useState(initialAddFormState);
+
+  // ================ Helper Functions =======
+  const updateForm = (event) => {
+    setAddFormState({
+      ...addFormState,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const updateFormActivityId = (event) => {
+    console.log(event.target);
+    setAddFormState({ ...addFormState, activityId: event.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const applyActivity = async () => {
+      try {
+        console.log("!!!!!!!", routine.id, addFormState);
+        const result = await attachActivity(routine.id, addFormState);
+        setActivitiesState([result, ...activitiesState]);
+      } catch (error) {
+        console.error("Error: ", error);
+      } finally {
+        setAddFormState(initialAddFormState);
+        navigate("/MyRoutines");
+      }
+    };
+    applyActivity();
+  };
+
+  // ================ Return =======
+  // ================ Return =======
   return (
-    <form
-      className="postCard"
-      onSubmit={(e) => {
-        e.preventDefault();
-        const applyActivity = async () => {
-          try {
-            const result = await addActivity(routine.id, formState);
-
-            if (result.id) {
-              const updatedRoutineActivities = [...routine.activities];
-              updatedRoutineActivities.unshift(
-                fetchActivity(result.activityId)
-              );
-              const updatedRoutineObj = { ...routine };
-              updatedRoutineObj.activities = updatedRoutineActivities;
-              const filteredRoutines = userRoutines.filter((element) => {
-                return element.id !== routine.id;
-              });
-              setUserRoutines([updatedRoutineObj, ...filteredRoutines]);
-            }
-          } catch (error) {
-            console.error("Error: ", error);
-          } finally {
-            setFormState(initialFormState);
-            navigate("/MyRoutines");
-          }
-        };
-        applyActivity();
-      }}
-    >
+    <form className="postCard" onSubmit={handleSubmit}>
       <div className="activities">
         <select
           name="activities"
@@ -74,7 +77,7 @@ const AddActivity = ({
           type="text"
           name="duration"
           placeholder="duration"
-          value={formState.duration}
+          value={addFormState.duration}
           onChange={updateForm}
         />
         <input
@@ -82,7 +85,7 @@ const AddActivity = ({
           type="text"
           name="count"
           placeholder="count"
-          value={formState.count}
+          value={addFormState.count}
           onChange={updateForm}
         />
         <div className="cardBtn">
