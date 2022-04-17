@@ -12,7 +12,7 @@ const Activities = ({
   const storedToken = localStorage.getItem("token");
   return (
     <>
-      <h1>Activities</h1>
+      <h1 id="Header">Activities</h1>
       {storedToken ? (
         <CreateActivity
           activities={activities}
