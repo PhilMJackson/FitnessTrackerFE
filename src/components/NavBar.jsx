@@ -7,10 +7,10 @@ const NavBar = () => {
     <nav className="nav-bar">
       <div className="lnk">
         <Link className="link" to="/">
-          Home
+          Home |
         </Link>
         <Link className="link" to="/Routines">
-          Routines
+          Routines |
         </Link>
         {localStorage.getItem("token") ? (
           <Link className="link" to="/MyRoutines">
@@ -18,7 +18,7 @@ const NavBar = () => {
           </Link>
         ) : null}
         <Link className="link" to="/Activities">
-          Activities
+          Activities |
         </Link>
       </div>
       <h1>Fitness Tracker</h1>

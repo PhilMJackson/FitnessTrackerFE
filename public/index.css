@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
 html {
   display: flex;
   flex-direction: column;
@@ -10,11 +12,16 @@ html {
 }
 nav {
   display: flex;
-  background-color: rgb(93, 93, 233);
+  background-color: rgb(39, 116, 240);
   align-items: center;
   height: 15%;
+  width: 100%;
   justify-content: space-between;
-  color: black;
+  color: white;
+  font-family: 'Monoton', cursive;
+  top:0px;;
+  position: fixed;
+  overflow: auto;
 }
 
 .btn {
@@ -32,11 +39,36 @@ nav {
   white-space:nowrap
 }
 
+.homeHead {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 30%;
+  margin-top: 10%;
+  width: 300px;
+  background-color: yellow;
+  border-radius: 20%;
+  padding-top: 100px;
+}
+
+#Free {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 60%;
+  margin-top: -10%;
+  width: 500px;
+  background-color: lightskyblue;
+  border-radius: 20%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .formCard {
   display: flex;
   flex-direction: column;
   width: 20%;
-  margin-top: 5rem;
+  margin-top: 15rem;
   margin-left: 30rem;
   border: solid blue 2px;
   justify-content: space-between;
@@ -51,12 +83,21 @@ nav {
   display: flex;
   flex-direction: column;
   border: 3px solid #005fff;
+  box-shadow: 4px 4px 4px skyblue;
+}
+
+#Header {
+  text-align: center;
+  text-decoration: underline 5PX solid blue;
+  margin-top: 10rem;
+  
 }
 
 .activityCard {
   display: flex;
   flex-direction: column;
   border: 1px solid #07effd;
+  box-shadow: 4px 4px 4px #005fff;
 
 }
 
@@ -140,4 +181,8 @@ nav {
   z-index: 900 ;
   background-color: rgba(0,0,0,.5);
   pointer-events:none;
+}
+
+#solidLine {
+  text-decoration: underline solid 8px blue;
 }
