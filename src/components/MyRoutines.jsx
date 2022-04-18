@@ -24,7 +24,7 @@ const MyRoutines = ({ activities, isOpen, setIsOpen, error, setError }) => {
   // ================ Return =======
   return (
     <>
-      <h1> My Routines</h1>
+      <h1 id="Header"> My Routines</h1>
       <CreateRoutine
         userRoutines={userRoutines}
         setUserRoutines={setUserRoutines}

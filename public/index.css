@@ -24,6 +24,14 @@ nav {
   overflow: auto;
 }
 
+#navBttn {
+  display: flex;
+  margin-right: 40px;
+  background-color: yellow;
+  color: red;
+  
+
+}
 .btn {
   display: flex;
 }
@@ -84,6 +92,7 @@ nav {
   flex-direction: column;
   border: 3px solid #005fff;
   box-shadow: 4px 4px 4px skyblue;
+  background-color: yellow;
 }
 
 #Header {
@@ -98,6 +107,7 @@ nav {
   flex-direction: column;
   border: 1px solid #07effd;
   box-shadow: 4px 4px 4px #005fff;
+  background-color: lightskyblue;
 
 }
 
@@ -185,4 +195,12 @@ nav {
 
 #solidLine {
   text-decoration: underline solid 8px blue;
+}
+
+#bttn {
+  color:red;
+  display:flex;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: yellow;
 }

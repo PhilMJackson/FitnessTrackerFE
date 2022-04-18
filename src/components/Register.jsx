@@ -53,7 +53,9 @@ const Register = ({
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         ></input>
-        <button type="submit">Register</button>
+        <button id="bttn" type="submit">
+          Register
+        </button>
       </form>
       {error.error ? (
         <ErrorHandler

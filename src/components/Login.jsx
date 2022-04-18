@@ -62,7 +62,9 @@ const Login = ({
           value={formState.password}
           onChange={updateForm}
         ></input>
-        <button type="submit">Log In</button>
+        <button id="bttn" type="submit">
+          Log In
+        </button>
       </form>
       {error.error ? (
         <ErrorHandler
