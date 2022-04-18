@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityCard, AddActivity, RemoveActivity } from ".";
+import { ActivityCard, AddActivity } from ".";
 import DeleteRoutine from "./DeleteRoutine";
 import UpdateRoutine from "./UpdateRoutine";
 
