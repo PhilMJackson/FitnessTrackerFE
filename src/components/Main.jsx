@@ -14,7 +14,6 @@ import { fetchRoutines, fetchActivities } from "../api";
 const Main = () => {
   const [token, setToken] = useState("");
   const [username, setUsername] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +23,6 @@ const Main = () => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
-      setIsLoggedIn(true);
     }
   }, [token]);
 
